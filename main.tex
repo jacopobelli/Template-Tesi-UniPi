@@ -1,0 +1,217 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TIPO DI DOCUMENTO E LINGUA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Che vuol dire questa roba?  https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/
+\documentclass[11pt, a4paper, twoside, openright]{book} 
+
+\usepackage[italian, english]{babel}   % Eliminare italian o english all'occorrenza
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONT, MARGINI E SPAZIATURE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[sc]{mathpazo} 		% Usa il font Palatino
+\usepackage[utf8]{inputenc} 	% UTF8 per avere tutti gli accentacci
+
+\usepackage{setspace}			% Imposta l'interlinea
+\onehalfspacing					% Anche \doublespacing
+
+\usepackage{microtype} 			% Migliora lo spaziamento tra le lettere
+
+% Dato che abbiamo impostato "twoside" in documentclass è conveniente usare 
+% "inner" e "outer" anziché "left" e "right". Così facendo possiamo avere un 
+% margine interno più grande di quello esterno (o viceversa).
+\usepackage[inner=4cm, outer=3cm, top=3cm, bottom=3cm]{geometry}
+%\usepackage{showframe}       % Mostra il margine della pagina
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIGURE, TABELLE E DIDASCALIE 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}   % Inserzione di figure
+\usepackage{placeins}   % Comando \FloatBar­rier per confinare i float
+
+\usepackage{tabularx}   % Inserzione di tabelle
+\usepackage{booktabs}   % Opzioni aggiuntive per le tabelle + ottimizzazione
+
+% Didascalie custom
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PERSONALIZZAZIONE DEGLI ELEMENTI DEL CAPITOLO: TITOLO, SEZIONE, ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[Bjornstrup]{fncychap} % Anche: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+
+% Variazioni al numero del capitolo
+\ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont\color{black}}  
+
+% Variazioni al nome del capitolo
+\ChTitleVar{\raggedleft\LARGE\bfseries}
+
+% Citazione all'inizio del capitolo
+\usepackage{epigraph}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr} % Headers and footers
+\newcommand{\fncyblank}{\fancyhf{}}
+\newenvironment{abstract}{
+	\clearpage 
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Abstract} 
+	\fncyblank 
+	\null 
+	\vfill  
+	\begin{center} 
+		\bfseries 
+		\abstractname 
+	\end{center}
+}{\vfill \null}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLORI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+\definecolor{UNIPIBLUE}{RGB}{16,79,140}
+\definecolor{customGray}{RGB}{224,224,224}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTAZIONE DEL FRONTESPIZIO DA UN PDF SEPARATO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLLEGAMENTI IPERTESTUALI NEL PDF
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+	bookmarksnumbered,	% Chapter and Appendix Numbers
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDICI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[titletoc]{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EQUAZIONI E MATEMATICA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage{siunitx}
+
+\newtheorem{definition}{Definition} % Riquadro di definizione
+
+\usepackage{mathtools}              % Simbolo di ceil fatto bene
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CODICE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+
+\definecolor{backcolour}{RGB}{255,255,255}
+\definecolor{codegreen}{RGB}{27,168,11}
+\definecolor{codeblue}{RGB}{35,35,205}
+\definecolor{codegray}{RGB}{128,128,128}
+\definecolor{codepurple}{RGB}{205,35,56}
+
+\lstdefinestyle{myPython}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codeblue},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\small\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	language=python
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\selectlanguage{english} 
+   
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% FRONTMATTER 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\frontmatter
+	
+	% Il frontespizio viene importato da un file pdf con una singola pagina
+	% generato con un file .tex separato
+	\begin{titlepage}
+		\thispagestyle{empty}
+		\includepdf{matters/frontmatter/frontispice/Frontispiece.pdf}
+		\thispagestyle{empty}	% non numerare questa pagina
+		\cleardoublepage
+	\end{titlepage}	
+	
+	
+	\include{matters/frontmatter/Dedication}
+	\include{matters/frontmatter/Abstract}
+
+		
+	\cleardoublepage
+	\phantomsection
+	% Aggiunge l'indice ai segnalibri del pdf ma non all'indice stesso 
+	\pdfbookmark{\contentsname}{tableofcontents}
+	\tableofcontents
+	
+	\include{matters/frontmatter/Glossary}
+	
+	% Lista delle figure
+	\cleardoublepage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{List of Figures}
+	\listoffigures
+	
+	% Lista delle tabelle
+	\cleardoublepage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{List of Tables}
+	\listoftables
+	
+	% Introduzione
+	\include{matters/frontmatter/Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% FRONTMATTER 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\mainmatter
+	\include{matters/mainmatter/Chapter_1}
+	\include{matters/mainmatter/Chapter_2}
+	
+	\begin{appendices}
+		\include{matters/mainmatter/Appendix_A}
+	\end{appendices}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% BACKMATTER 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\backmatter
+	
+	% Bibliografia
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Bibliography} 
+	\bibliography{Bibliography}  % percorso relativo per il file .bib 
+	\bibliographystyle{unsrt} 	 % altri stili qui: https://www.overleaf.com/learn/latex/Bibtex_bibliography_styles
+	
+	\include{matters/backmatter/Ringraziamenti}
+\end{document}

@@ -1,0 +1,26 @@
+% Per generare il pdf della tesi compilare questo file .tex, poi aprire Frontispiece-frn.tex, 
+% compilare anche quello e infine ritornare qui per compilare una seconda volta questo documento.
+% Una volta generato, il pdf del frontespizio sarà incluso nel file principale con un comando
+% \includepdf
+
+\documentclass[a4paper, titlepage]{book}
+\usepackage[utf8]{inputenc} % UTF8 per avere tutti gli accentacci
+\usepackage{frontespizio} 	% http://texdoc.net/texmf-dist/doc/latex/frontespizio/frontespizio.pdf
+
+\begin{document}
+	\begin{frontespizio}
+		\Istituzione{Università di Pisa}
+		\Divisione{Dipartimento di Ingegneria dell'Informazione}
+		\Scuola{Laurea Magistrale in Ingegneria Elettronica}
+		\Logo[3.5cm]{img/cherubino_pant541_svg}
+		\Titolo{Titolo della tesi}
+		%\NCandidato{Candidate}			% Togliere il commento per frontespizi in inglese
+		\Candidato{Mario Rossi}
+		%\NRelatore{Advisor}{Advisors}	% Togliere il commento per frontespizi in inglese
+		\Relatore{Prof. Mario Rossi}
+		\Relatore{Dott. Mario Rossi}
+		\Relatore{Dott. Mario Rossi}
+		\Piede{Anno Accademico 2018-2019}
+		\Margini{3cm}{3cm}{3cm}{3cm}
+	\end{frontespizio}
+\end{document}

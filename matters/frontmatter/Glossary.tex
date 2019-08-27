@@ -1,0 +1,48 @@
+% Non numerare ma aggiungere all'indice
+\phantomsection
+\chapter*{Glossary}
+\markboth{GLOSSARY}{}
+\addcontentsline{toc}{chapter}{Glossary}
+
+\subsection*{Abbreviations and Acrnoyms}
+% Acronym and abbreviations
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabularx}{\textwidth}{ll}
+			\toprule
+			\textsc{Term} & \textsc{Meaning} \\ 
+			\midrule
+			ASIC & Application Specific Integrated Circuit\\
+			FPGA & Field Programmable Gate Array \\
+			FSM & Finite State Machine \\
+			PLL & Phase Locked Loop\\
+			SHA & Secure Hash Algorithm \\
+			LUT & Look-Up Table\\
+			SSL & Secure Sockets Layer \\
+			TLS & Transport Layer Security \\
+			HTTP & HyperText Transfer Protocol \\
+			HTTPS & HyperText Transfer Protocol Secure \\
+
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+\end{table}
+
+%\newpage
+
+\subsection*{Mathematical Symbols and Notation}
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabularx}{\textwidth}{ll}
+			\toprule
+			\textsc{Symbol} & \textsc{Description} \\ 
+			\midrule
+			$p(x)$ & Probability mass function of a discrete random variable\\
+			$E[\bullet]$ & Expectation operator \\
+			$\oplus$ & Bitwise logic XOR\\
+			$\wedge$ & Bitwise logic AND\\
+			$\vee$ & Bitwise logic OR\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+\end{table}
