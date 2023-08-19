@@ -3,7 +3,7 @@
   <h1 align="center">Template Tesi UniPi</h1>
 
   <p align="center">
-    Non-official LaTeX template for master's thesis at the University of Pisa
+    Unofficial LaTeX template for master's thesis at the University of Pisa
     <br />
     <br />
     <a href="https://github.com/jacopobelli/Template-Tesi-UniPi">View Demo</a>
